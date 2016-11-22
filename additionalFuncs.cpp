@@ -8,11 +8,14 @@ Studend ID:
 Project:    #2
 ******************************************************************************/
 
-using namespace std;
+
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
+#include "data.cpp"
+
+using namespace std;
 
 #ifndef __PRINT__
 #define __PRINT__
@@ -40,5 +43,22 @@ void swapData(data & x, data & y)
    // set y equal to temp
 	y = temp;
 }
+
+
+void generateList(data arr[], int size) {
+   int x, i;
+   double y;
+
+	// generate list of random numbers for the array of size 100
+	for(i = 0; i < size; i++)
+	{
+		arr[i].key = rand () % 100000;
+		x = rand () % 10000;
+		y = rand () % 10000;
+		arr[i].num = x / y;
+	}
+}
+
+
 
 #endif

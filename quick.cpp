@@ -14,8 +14,9 @@
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
+
+#include "additionalFuncs.cpp"
 #include "data.cpp"
-#include "printswap.cpp"
 
 using namespace std;
 

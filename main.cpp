@@ -10,305 +10,21 @@
 
 
 
-Description of the problem: 
-   This program will generate three unsorted lists of data of different sizes:
-   100, 5000, and 10000 items.  The unsorted lists will consist of a data
-   structure that contains the key (an integer), and a random double number.  
-   Both the key and the random double number will be randomly generated. The 
-   structure will be put into an array and each array will be sorted using four
-   different sorts. The program determines the Big-O value for each data size.
+Description of the Problem:
+	Create an application that will generate lists of 100, 5000, and 10000
+	random values. Then sort them using the selection, insertion, bubble, and
+	quick sort, while also generating a binary search tree to additionally sort
+	the values. The resulting sorts will be output into individual files that
+	include the required passes to sort.
 
-   
-Pseudocode
-   
-   Structure Name: data
-   Data: key - holds an integer
-         num - holds a double
-   
-   Functions: 
-         void swapData(data & x, data & y)
-         void quickSort(data arr[], int left, int right, int & count)
-         void bubbleSort(data arr[], int size)
-         void insertionSort(data arr[], int size)
-         void selectionSort(data arr[], int size)
-         
-         
- *****************************************************************************
-            
-            
-      swapData - swaps the order of two structures using a temp of the same type
-         inputs:  x, y
-         outputs: none
-         returns: none
-         
-         
-         temp = x
-         x    = y
-         y    = temp
-         
-         
-******************************************************************************
-     
-         
-      quickSort - sorts the data from smallest to largest, counts the passes it 
-                  takes to sort the data
-                  
-         inputs:  array of structures (arr[]), integers: left, right, count
-         outputs: none
-         
-         1. if (right - left) > 0, then
-            1. sortleft  = left + 1
-            2. sortright = right
-            3. middle    = (left + right)/2
-            4. if (arr[left] > arr[middle])
-               1. call function swapData(arr[left], arr[middle])
-            5. if (arr[left] > arr[right])
-               1. call function swapData(arr[left], arr[right])     
-            6. if (arr[middle] > arr[right])
-               1. call function swapData(arr[middle], arr[right])
-            7. call function swapData(arr[middle], arr[left])
-            8. pivot = left
-            9. loop (sortleft <= sortright)
-               1. loop (arr[sortleft] < arr[pivot])
-                  1. increment sortleft
-               2. end loop
-               3. loop (arr[sortright] >= arr[pivot])
-                  1. decrement sortright
-               4. end loop
-               5. increment count
-               6. if (sortleft < sortright)
-                  1. call functin swapData(arr[sortleft], arr[sortright])
-                  2. increment sortleft;
-                  3. decrement sortright;
-            10. end loop
-            11. call function swapData(arr[sortleft - 1], arr[pivot])
-            12. if (left < sortright)
-               1. call quickSort recursively
-            13. if (sortleft < right)
-               1. call quickSort recursively
-         2. end quickSort
-         3. write data to files 
-     
-               
-******************************************************************************
+Functions:
+    + main() - Instructs the sorts to be processed.
+    	> Initialize the lists
+    	> Generate the random values for each size of list.
+    	> Call all of the sorts on lists
+    	> Print the values to a file
+    	> Add lists to BSTs and print values to file
 
-
-      bubbleSort - sorts array using bubble sort
-      
-      inputs: array, size
-      outputs: prints information to bub100.dat, bub1000.dat, bub5000.dat
-      
-      Pre:   array cannot be empty
-             size is the size of the array
-             size - 1 is an index to the last element in the array
-
-      Post:  array has been sorted
-      
-      1. sorted = false
-      2. loop (curr = 0; curr < size && sorted == false; increment curr)
-         1. sorted = true
-         2. loop (walker = size - 1; walker > curr; decrement walker)
-            1. increment count
-            2. if (arr[walker] < arr[walker - 1])
-               1. call function swapData
-               2. sorted = false
-         3. end loop
-      3. end loop
-      4. end bubbleSort
-      5. write data to files
-
-      
-******************************************************************************
-
-
-      insertionSort - sorts array using insertion. The array will be divided 
-                      into two parts: unsorted and sorted. The first element of
-                      the unsorted list will be inserted into the sorted list.
-                      
-      inputs: array, size
-      outputs: prints information to sins100.dat, sins1000.dat, sins5000.dat 
-                     
-      Pre:   array cannot be empty
-             size is the size of the array
-             size - 1 is an index to the last element in the array
-
-      Post:  array has been sorted
-      
-      1. loop (i = 0; i < size; increment i)
-         1. set walker = i
-         2. loop (walker > 0 AND arr[walker - 1] > arr[walker])
-            1. increment count
-            2. call function swapData
-            3. decrement walker
-         3. end loop
-      2. end loop
-      3. end insertionSort
-      4. write data to files
-
-      
-*******************************************************************************
-
-
-      selectionSort - sorts array using selection. Selects smallest element in 
-                      the unsorted portion of the array and exchanges with the 
-                      first element of the unsorted array
-                      
-      inputs: array, size
-      outputs: prints information to sels100.dat, sels1000.dat, sels5000.dat 
-      
-      Pre:  array cannot be empty
-            size is the size of the array
-            size - 1 is an index to the last element in the array
-            
-      Post: array has been sorted
-      
-      1. loop (i = 0; i < size; increment i)
-         1. set min = i
-         2. loop (j = i + 1; j < size; increment j)
-            1. increment count
-            2. if (arr[j] < arr[min])
-               1. min = j
-         3. end loop
-         4. if (min != i)
-            1. call function swapData
-      2. end loop
-      3. end selectionSort
-      4. write data to files
-      
-
-********************************************************************************
-      
-      
-      Class Name: Node
-       
-      Data:    t         - data structure
-               left      - Node pointer
-               right     - Node pointer
-               
-      Constructor
-         inputs: k (key), n (num)
-         output: none
-               sets t.key = k
-               sets t.num = n
-               sets left  = NULL
-               sets right = NULL
-               
-      Mutator Functions
-               set_left  - sets left  pointer
-               set_right - sets right pointer
-               setKey    - sets key
-               
-      Accesor Functions
-               getKey    - returns key
-               getNum    - returns num
-               getLeft   - returns left  pointer
-               getRight  - returns right pointer
-               
-               
-*******************************************************************************
-               
-               
-      Class Name: BST
-      Data:   root       - Node pointer
-              insertNode - recursive function
-               
-      Mutator Functions
-               no mutator functions were used
-               
-      Accesor Functions
-               no accesor functions were used
-               
-      Functions: 
-            void insertNode(int, double, Node)
-            void inorder(Node *p, ofstream &output)
-            void print_inorder(ofstream &output)
-            bool isEmpty()
-            
-            
-******************************************************************************
-               
-      insertNode - inserts Node into binary search tree (private function)
-      
-      inputs:  integer, double
-      outputs: none
-      
-      Pre:  binary search tree must be created
-      Post: node must be inserted 
-      
-      1. if (k < leaf->getKey())
-         1. if (leaf->getLeft() != NULL)
-            1. call function insertNode
-         2. else
-            1. create new node
-            2. set left leaf's pointer to treenode
-      2. else
-         1. if leaf's right pointer does not equal NULL
-            1. call function insertNode
-         2. else
-            1. create new node
-            2. set right leaf's pointer to treenode
-      3. end insertNode
-      
-      
-*******************************************************************************
-               
-      insertNode - inserts Node into binary search tree (public function)
-      
-      inputs: integer, double
-      outputs: none
-      
-      Pre:  binary search tree must be created
-      Post: node must be inserted 
-      
-      1. if (call function isEmpty)
-         1. create new node
-         2. set root = new node
-      2. else 
-         1. call function insertNode
-      3. end insertNode
-      
-*******************************************************************************
-
-      inorder - prints to file in order
-      
-      inputs: Node pointer, ofstream &output
-      outputs: prints to file
-      
-      Pre: tree must have at least one node
-      Post: tree node must be printed to file
-      
-      1. if node is not NULL
-         1. call function inorder(p->getLeft(), output)
-         2. print to node's key and num to file 
-         3. call function inorder(p->getRight(), output)
-      2. end inorder
-      
-*******************************************************************************
-
-      print_inorder - recursive function
-      
-      inputs: ofstream &output
-      outputs: prints to file
-      
-      Pre: tree must have at least one node
-      Post: entire tree must be printed to the file
-      
-      1. call function inorder
-      2. end print_inorder
-      
-********************************************************************************
-      
-      isEmpty - determines whether tree is empty
-      
-      inputs: none
-      outputs: 1 if root equals NULL
-               0 if root does not equal NULL
-               
-      Pre: none
-      Post: returns tree empty or not empty
-      
-      1. return root == NULL
-      2. end isEmpty
       
 ******************************************************************************/
 /* Answer to Questions
@@ -336,61 +52,29 @@ Pseudocode
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
+
+#include "additionalFuncs.cpp"
 #include "data.cpp"
 #include "bubble.cpp"
 #include "insertion.cpp"
 #include "selection.cpp"
-#include "printswap.cpp"
 #include "quick.cpp"
 #include "bst.hpp"
 
 
 using namespace std;
 
-// function used to swap data
-void swapData(data & x, data & y);
-// function used to print during testing
-void printKey(data arr[], int size);
 
 int main()
 {
-   int x, i;
-   double y;
-
-   cout.setf(ios::fixed);
-   cout.setf(ios::showpoint);
-   cout.precision(2);
-
 	
-   data  num100[100],  num5000[5000],  num10000[10000];
+   data num100[100], num5000[5000], num10000[10000];
    data temp100[100], temp5000[5000], temp10000[10000];
-  
-   // generate list of random numbers for the array of size 100
-   for(i = 0; i < 100; i++)
-	{
-		num100[i].key = rand () % 100000;
-		x = rand () % 10000;
-		y = rand () % 10000;
-		num100[i].num = x / y;
-	}
 
-   // generate list of random numbers for the array of size 5000
-	for(i = 0; i < 5000; i++)
-	{
-		num5000[i].key = rand () % 100000;
-		x = rand () % 10000;
-		y = rand () % 10000;
-		num100[i].num = x / y;
-	}
-
-   // generate list of random numbers for the array of size 10000
-	for(i = 0; i < 10000; i++)
-	{
-		num10000[i].key = rand () % 100000;
-		x = rand () % 10000;
-		y = rand () % 10000;
-		num10000[i].num = x / y;
-	}
+   // Generates the three lists based on the size
+   generateList(num100, 100);
+   generateList(num5000, 5000);
+   generateList(num10000, 10000);
   
    // Call bubble sort function
 	bubbleSort(num100,   100);
