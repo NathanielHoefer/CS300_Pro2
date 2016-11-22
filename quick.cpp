@@ -1,11 +1,15 @@
-/******************************************************************************
-Author:     
-Student ID: 
+/*****************************************************************************/
+/* Project 2 - Sorting Algorithms											 */
+/*****************************************************************************
+	Author:  Atish Retna Rajah
+    Student ID:
 
-Project:    #2
+    Author: Nathaniel Hoefer
+    Student ID: X529U639
+    Program: Project 2
 ******************************************************************************/
 
-using namespace std;
+
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
@@ -13,6 +17,7 @@ using namespace std;
 #include "data.cpp"
 #include "printswap.cpp"
 
+using namespace std;
 
 #ifndef __QUICK__
 #define __QUICK__

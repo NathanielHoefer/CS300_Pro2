@@ -1,8 +1,12 @@
-/******************************************************************************
-Author:     
-Studend ID: 
+/*****************************************************************************/
+/* Project 2 - Sorting Algorithms											 */
+/*****************************************************************************
+	Author:  Atish Retna Rajah
+    Student ID:
 
-Project:    #2
+    Author: Nathaniel Hoefer
+    Student ID: X529U639
+    Program: Project 2
 ******************************************************************************/
 
 using namespace std;
@@ -52,7 +56,7 @@ void insertionSort(data arr[], int size)
 	if(size == 100)
 	{
 		sins.open("sins100.dat");
-		sins << "Calculated Big-O: 10000"                   << endl;
+		sins << "Calculated Big-O (n^2): 10,000"                   << endl;
 		sins << "From project Big-O: "             << count << endl;
 		sins << "List of sorted keys and numbers:" <<  endl << endl;
 		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
@@ -65,11 +69,11 @@ void insertionSort(data arr[], int size)
 		}
 	}
 
-   // copy to file, if size = 1000
-	if(size == 1000)
+   // copy to file, if size = 5000
+	if(size == 5000)
 	{
-		sins.open("sins1000.dat");
-		sins << "Calculated Big-O: 1000000"                 << endl;
+		sins.open("sins5000.dat");
+		sins << "Calculated Big-O (n^2): 25,000,000"                 << endl;
 		sins << "From project Big-O: "             << count << endl;
 		sins << "List of sorted keys and numbers:" << endl  << endl;
 		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
@@ -83,11 +87,11 @@ void insertionSort(data arr[], int size)
 		
 	}
 
-   // copy to file, if size = 5000
-	if(size == 5000)
+   // copy to file, if size = 10000
+	if(size == 10000)
 	{
-		sins.open("sins5000.dat");
-		sins << "Calculated Big-O: 25000000"                 << endl;
+		sins.open("sins10000.dat");
+		sins << "Calculated Big-O (n^2): 100,000,000"                 << endl;
 		sins << "From project Big-O: "              << count << endl;
 		sins << "List of sorted keys and numbers:"  <<  endl << endl;
 		sins << setw(10) << "Key" << setw(20) << "Data"      << endl;

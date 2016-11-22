@@ -1,29 +1,23 @@
-/******************************************************************************
-Author:    
-Student ID: 
+/*****************************************************************************/
+/* Project 2 - Sorting Algorithms											 */
+/*****************************************************************************
+	Author:  Atish Retna Rajah
+    Student ID:
 
-Author:     
-Studend ID: 
+    Author: Nathaniel Hoefer
+    Student ID: X529U639
+    Program: Project 2
 
-Project:    #2
-
-
-/******************************************************************************
 
 
 Description of the problem: 
    This program will generate three unsorted lists of data of different sizes:
-   100, 1000, and 5000 items.  The unsorted lists will consist of a data
+   100, 5000, and 10000 items.  The unsorted lists will consist of a data
    structure that contains the key (an integer), and a random double number.  
    Both the key and the random double number will be randomly generated. The 
    structure will be put into an array and each array will be sorted using four
    different sorts. The program determines the Big-O value for each data size.
-   
-   Sorts:
-      Quick     Sort: Chris
-      Bubble    Sort: Chris
-      Insertion Sort: Arelis
-      Selection Sort: Arelis
+
    
 Pseudocode
    
@@ -338,7 +332,6 @@ Pseudocode
 *        larger, the percentage decreases. 
 */
 
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
@@ -351,6 +344,9 @@ using namespace std;
 #include "quick.cpp"
 #include "bst.hpp"
 
+
+using namespace std;
+
 // function used to swap data
 void swapData(data & x, data & y);
 // function used to print during testing
@@ -359,29 +355,20 @@ void printKey(data arr[], int size);
 int main()
 {
    int x, i;
-	double y;
+   double y;
 
    cout.setf(ios::fixed);
    cout.setf(ios::showpoint);
    cout.precision(2);
 
 	
-	data  num100[100],  num1000[1000],  num5000[5000];
-   data temp100[100], temp1000[1000], temp5000[5000];
+   data  num100[100],  num5000[5000],  num10000[10000];
+   data temp100[100], temp5000[5000], temp10000[10000];
   
    // generate list of random numbers for the array of size 100
    for(i = 0; i < 100; i++)
 	{
 		num100[i].key = rand () % 100000;
-		x = rand () % 10000;
-		y = rand () % 10000;
-		num100[i].num = x / y;
-	}
-
-   // generate list of random numbers for the array of size 1000
-	for(i = 0; i < 1000; i++)
-	{
-		num1000[i].key = rand () % 100000;
 		x = rand () % 10000;
 		y = rand () % 10000;
 		num100[i].num = x / y;
@@ -393,23 +380,32 @@ int main()
 		num5000[i].key = rand () % 100000;
 		x = rand () % 10000;
 		y = rand () % 10000;
-		num5000[i].num = x / y;
+		num100[i].num = x / y;
+	}
+
+   // generate list of random numbers for the array of size 10000
+	for(i = 0; i < 10000; i++)
+	{
+		num10000[i].key = rand () % 100000;
+		x = rand () % 10000;
+		y = rand () % 10000;
+		num10000[i].num = x / y;
 	}
   
    // Call bubble sort function
 	bubbleSort(num100,   100);
-	bubbleSort(num1000, 1000);
 	bubbleSort(num5000, 5000);
+	bubbleSort(num10000, 10000);
 
    // Call insertion sort function
 	insertionSort(num100,   100);
-	insertionSort(num1000, 1000);
 	insertionSort(num5000, 5000);
+	insertionSort(num10000, 10000);
 
    // Call selection sort function
 	selectionSort(num100,   100);
-	selectionSort(num1000, 1000);
 	selectionSort(num5000, 5000);
+	selectionSort(num10000, 10000);
 
 /*****************************************************************************/
 
@@ -427,7 +423,7 @@ int main()
    // print quickSort data to file
    ofstream quick100;
    quick100.open("quick100.dat");
-   quick100 << "Calculated Big-O: 200"                     << endl;
+   quick100 << "Calculated Big-O (nlog(n)): 200"                     << endl;
    quick100 << "From project Big-O: "             << count << endl;
    quick100 << "List of sorted keys and numbers:" << endl  << endl;
    quick100 << setw(10) << "Key" << setw(20) << "Data"     << endl;
@@ -443,33 +439,7 @@ int main()
    
 
 /*****************************************************************************/
-
-   count = 0;
-   
-   // make copy of array
-   for(int i = 0; i < 1000; i++)
-      temp1000[i] = num1000[i];
-
-   // call quickSort function
-	quickSort(temp1000, 0, 999, count);
-
-   // print quickSort data to file
-   ofstream quick1000;
-   quick1000.open("quick1000.dat");
-   quick1000 << "Calculated Big-O: 3000"                    << endl;
-   quick1000 << "From project Big-O: "             << count << endl;
-   quick1000 << "List of sorted keys and numbers:" << endl  << endl;
-   quick1000 << setw(10) << "Key" << setw(20) << "Data"     << endl;
-   quick1000 << "----------  ------------------"            << endl;
-
-   for(int i = 0; i < 1000; i++)
-   {
-      quick1000 << setw(10) << temp1000[i].key;
-      quick1000 << setw(20) << temp1000[i].num << endl;
-   }
-
-   quick1000.close();
-
+// Print Quicksort of 5000
 /*****************************************************************************/
 
    count = 0;
@@ -479,29 +449,60 @@ int main()
       temp5000[i] = num5000[i];
 
    // call quickSort function
-   quickSort(temp5000, 0, 4999, count);
+	quickSort(temp5000, 0, 4999, count);
 
-   //print quickSort data to file
+   // print quickSort data to file
    ofstream quick5000;
    quick5000.open("quick5000.dat");
-   quick5000 << "Calculated Big-O: 18495"                   << endl;
+   quick5000 << "Calculated Big-O (nlog(n)): 18,495"        << endl;
    quick5000 << "From project Big-O: "             << count << endl;
    quick5000 << "List of sorted keys and numbers:" << endl  << endl;
    quick5000 << setw(10) << "Key" << setw(20) << "Data"     << endl;
    quick5000 << "----------  ------------------"            << endl;
+
+   for(int i = 0; i < 5000; i++)
+   {
+      quick5000 << setw(10) << temp5000[i].key;
+      quick5000 << setw(20) << temp5000[i].num << endl;
+   }
+
+   quick5000.close();
+
+/*****************************************************************************/
+// Print Quicksort of 10000
+/*****************************************************************************/
+
+   count = 0;
+   
+   // make copy of array
+   for(int i = 0; i < 10000; i++)
+      temp10000[i] = num10000[i];
+
+   // call quickSort function
+   quickSort(temp10000, 0, 9999, count);
+
+   //print quickSort data to file
+   ofstream quick10000;
+   quick10000.open("quick10000.dat");
+   quick10000 << "Calculated Big-O (nlog(n)): 40,000"        << endl;
+   quick10000 << "From project Big-O: "             << count << endl;
+   quick10000 << "List of sorted keys and numbers:" << endl  << endl;
+   quick10000 << setw(10) << "Key" << setw(20) << "Data"     << endl;
+   quick10000 << "----------  ------------------"            << endl;
   
-  for(int i = 0; i < 5000; i++)
+  for(int i = 0; i < 10000; i++)
   {
-    quick5000 << setw(10) << temp5000[i].key;
-    quick5000 << setw(20) << temp5000[i].num << endl;
+    quick10000 << setw(10) << temp10000[i].key;
+    quick10000 << setw(20) << temp10000[i].num << endl;
   }
   
-   quick5000.close();
+   quick10000.close();
   
   
-   cout << endl << "All of the data was sent to their respective files!" 
-        << endl << endl;
+   cout << endl << "Files generated" << endl << endl;
         
+/*****************************************************************************/
+// Print BST of 100
 /*****************************************************************************/
 
    // create three different binary trees
@@ -524,20 +525,21 @@ int main()
    
    bst1.setf(ios::fixed);
    bst1.setf(ios::showpoint);
-   bst1.precision(2);
 
    // print inoder
    binaryTree1.print_inorder(bst1);
    bst1.close();
 
 /*****************************************************************************/
+// Print BST of 5000
+/*****************************************************************************/
    
    // insert each node
-   for(int i = 0; i < 1000; i++)
-      binaryTree2.insertNode(num1000[i].key, num1000[i].num);
+   for(int i = 0; i < 5000; i++)
+      binaryTree2.insertNode(num5000[i].key, num5000[i].num);
    
    // print data to file
-   ofstream bst2("bst1000.dat");
+   ofstream bst2("bst5000.dat");
    
    bst2 << "List of sorted keys and numbers:"  <<  endl << endl;
    bst2 << setw(10) << "Key" << setw(20) << "Data"      << endl;
@@ -546,19 +548,20 @@ int main()
    
    bst2.setf(ios::fixed);
    bst2.setf(ios::showpoint);
-   bst2.precision(2);
 
    // print inorder
    binaryTree2.print_inorder(bst2);
    bst2.close();
    
-/******************************************************************************/
+/*****************************************************************************/
+// Print BST of 10000
+/*****************************************************************************/
    
    // insert each node
-   for(int i = 0; i < 5000; i++)
-      binaryTree3.insertNode(num5000[i].key, num5000[i].num);
+   for(int i = 0; i < 10000; i++)
+      binaryTree3.insertNode(num10000[i].key, num10000[i].num);
    
-   ofstream bst3("bst5000.dat");
+   ofstream bst3("bst10000.dat");
    
    // print data to file
    bst3 << "List of sorted keys and numbers:"  <<  endl << endl;
@@ -568,7 +571,6 @@ int main()
    
    bst3.setf(ios::fixed);
    bst3.setf(ios::showpoint);
-   bst3.precision(2);
 
    // print inorder
    binaryTree3.print_inorder(bst3);
