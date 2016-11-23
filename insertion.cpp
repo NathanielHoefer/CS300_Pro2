@@ -52,57 +52,59 @@ void insertionSort(data arr[], int size)
 		}
 	}
 
-   // copy to file, if size = 100
-	if(size == 100)
-	{
-		sins.open("sins100.dat");
-		sins << "Calculated Big-O (n^2): 10,000"                   << endl;
-		sins << "From project Big-O: "             << count << endl;
-		sins << "List of sorted keys and numbers:" <<  endl << endl;
-		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
-		sins << "----------  ------------------"            << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			sins << setw(10) << copy[i].key;
-			sins << setw(20) << copy[i].num << endl;
-		}
-	}
+	outputData(copy, size, count, 'i');
 
-   // copy to file, if size = 5000
-	if(size == 5000)
-	{
-		sins.open("sins5000.dat");
-		sins << "Calculated Big-O (n^2): 25,000,000"                 << endl;
-		sins << "From project Big-O: "             << count << endl;
-		sins << "List of sorted keys and numbers:" << endl  << endl;
-		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
-		sins << "----------  ------------------"            << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			sins << setw(10) << copy[i].key;
-			sins << setw(20) << copy[i].num << endl;
-		}
-		
-	}
-
-   // copy to file, if size = 10000
-	if(size == 10000)
-	{
-		sins.open("sins10000.dat");
-		sins << "Calculated Big-O (n^2): 100,000,000"                 << endl;
-		sins << "From project Big-O: "              << count << endl;
-		sins << "List of sorted keys and numbers:"  <<  endl << endl;
-		sins << setw(10) << "Key" << setw(20) << "Data"      << endl;
-		sins << "----------  ------------------"             << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			sins << setw(10) << copy[i].key;
-			sins << setw(20) << copy[i].num << endl;
-		}
-	}
+//   // copy to file, if size = 100
+//	if(size == 100)
+//	{
+//		sins.open("sins100.dat");
+//		sins << "Calculated Big-O (n^2): 10,000"                   << endl;
+//		sins << "From project Big-O: "             << count << endl;
+//		sins << "List of sorted keys and numbers:" <<  endl << endl;
+//		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
+//		sins << "----------  ------------------"            << endl;
+//
+//		for(int i = 0; i < size; i++)
+//		{
+//			sins << setw(10) << copy[i].key;
+//			sins << setw(20) << copy[i].num << endl;
+//		}
+//	}
+//
+//   // copy to file, if size = 5000
+//	if(size == 5000)
+//	{
+//		sins.open("sins5000.dat");
+//		sins << "Calculated Big-O (n^2): 25,000,000"                 << endl;
+//		sins << "From project Big-O: "             << count << endl;
+//		sins << "List of sorted keys and numbers:" << endl  << endl;
+//		sins << setw(10) << "Key" << setw(20) << "Data"     << endl;
+//		sins << "----------  ------------------"            << endl;
+//
+//		for(int i = 0; i < size; i++)
+//		{
+//			sins << setw(10) << copy[i].key;
+//			sins << setw(20) << copy[i].num << endl;
+//		}
+//
+//	}
+//
+//   // copy to file, if size = 10000
+//	if(size == 10000)
+//	{
+//		sins.open("sins10000.dat");
+//		sins << "Calculated Big-O (n^2): 100,000,000"                 << endl;
+//		sins << "From project Big-O: "              << count << endl;
+//		sins << "List of sorted keys and numbers:"  <<  endl << endl;
+//		sins << setw(10) << "Key" << setw(20) << "Data"      << endl;
+//		sins << "----------  ------------------"             << endl;
+//
+//		for(int i = 0; i < size; i++)
+//		{
+//			sins << setw(10) << copy[i].key;
+//			sins << setw(20) << copy[i].num << endl;
+//		}
+//	}
    
    return;
 

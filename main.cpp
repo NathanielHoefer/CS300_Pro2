@@ -29,23 +29,6 @@ Functions:
 ******************************************************************************/
 /* Answer to Questions
 *
-*     1. Does the actual time agree with your calculations?
-*        No. For the bubble sort, the bigO from the project is about
-*        half of the calculated bigO. For the quick sort, the bigO from the
-*        project is about 75% of the calculated bigO. For the selection sort, 
-*        the bigO from the project is about half of the calculated bigO. For the
-*        insertion sort, the bigO from the project is about 30%.
-* 
-*     2. Which sort is faster?
-*        The fastest sort was the insertion sort. Since it only took about 30%
-*        of the calculated bigO. 
-* 
-*     3. Does the data size make a difference?
-*        
-*        No. All the calculated bigO values, regardless of the data size, were 
-*        approaching the percentages mentioned in question 1, except for 
-*        the insertion sort. For this sort, as the size of the array gets 
-*        larger, the percentage decreases. 
 */
 
 #include <iostream>
@@ -68,122 +51,63 @@ using namespace std;
 int main()
 {
 	
-   data num100[100], num5000[5000], num10000[10000];
-   data temp100[100], temp5000[5000], temp10000[10000];
+	data num100[100], num5000[5000], num10000[10000];
+	data temp100[100], temp5000[5000], temp10000[10000];
+	int quickCount;
 
-   // Generates the three lists based on the size
-   generateList(num100, 100);
-   generateList(num5000, 5000);
-   generateList(num10000, 10000);
-  
-   // Call bubble sort function
-	bubbleSort(num100,   100);
+	// Generates the three lists based on the size
+	generateList(num100, 100);
+	generateList(num5000, 5000);
+	generateList(num10000, 10000);
+   
+
+	// Copies the arrays
+	for(int i = 0; i < 100; i++)
+		temp100[i] = num100[i];
+	for(int i = 0; i < 5000; i++)
+		temp5000[i] = num5000[i];
+	for(int i = 0; i < 10000; i++)
+		temp10000[i] = num10000[i];
+
+	// Sorts the elements within 100 element lists
+	cout << endl << 100 << " Element Lists" << endl;
+	cout << "------------------------------------" << endl;
+
+	bubbleSort(num100, 100);
+	insertionSort(num100, 100);
+	selectionSort(num100, 100);
+
+	quickCount = 0;
+	quickSort(temp100, 0, 99, quickCount);
+	outputData(temp100, 100, quickCount, 'q');
+
+
+	// Sorts the elements within 5000 element lists
+	cout << endl << 5000 << " Element Lists" << endl;
+	cout << "------------------------------------" << endl;
+
 	bubbleSort(num5000, 5000);
-	bubbleSort(num10000, 10000);
-
-   // Call insertion sort function
-	insertionSort(num100,   100);
 	insertionSort(num5000, 5000);
-	insertionSort(num10000, 10000);
-
-   // Call selection sort function
-	selectionSort(num100,   100);
 	selectionSort(num5000, 5000);
+
+	quickCount = 0;
+	quickSort(temp5000, 0, 4999, quickCount);
+	outputData(temp5000, 5000, quickCount, 'q');
+
+
+	// Sorts the elements within 10000 element lists
+	cout << endl << 10000 << " Element Lists" << endl;
+	cout << "------------------------------------" << endl;
+
+	bubbleSort(num10000, 10000);
+	insertionSort(num10000, 10000);
 	selectionSort(num10000, 10000);
 
-/*****************************************************************************/
+	quickCount = 0;
+	quickSort(temp10000, 0, 9999, quickCount);
+	outputData(temp10000, 10000, quickCount, 'q');
 
-	int count;
-
-   count = 0;
-   
-   // make copy of array
-   for(int i = 0; i < 100; i++) 
-      temp100[i] = num100[i];
-    
-   // call quickSort function
-	quickSort(temp100, 0, 99, count);
-  
-   // print quickSort data to file
-   ofstream quick100;
-   quick100.open("quick100.dat");
-   quick100 << "Calculated Big-O (nlog(n)): 200"                     << endl;
-   quick100 << "From project Big-O: "             << count << endl;
-   quick100 << "List of sorted keys and numbers:" << endl  << endl;
-   quick100 << setw(10) << "Key" << setw(20) << "Data"     << endl;
-   quick100 << "----------  ------------------"            << endl;
-  
-  for(int i = 0; i < 100; i++)
-  {
-    quick100 << setw(10) << temp100[i].key;
-    quick100 << setw(20) << temp100[i].num << endl;
-  }
-  
-   quick100.close();
-   
-
-/*****************************************************************************/
-// Print Quicksort of 5000
-/*****************************************************************************/
-
-   count = 0;
-   
-   // make copy of array
-   for(int i = 0; i < 5000; i++)
-      temp5000[i] = num5000[i];
-
-   // call quickSort function
-	quickSort(temp5000, 0, 4999, count);
-
-   // print quickSort data to file
-   ofstream quick5000;
-   quick5000.open("quick5000.dat");
-   quick5000 << "Calculated Big-O (nlog(n)): 18,495"        << endl;
-   quick5000 << "From project Big-O: "             << count << endl;
-   quick5000 << "List of sorted keys and numbers:" << endl  << endl;
-   quick5000 << setw(10) << "Key" << setw(20) << "Data"     << endl;
-   quick5000 << "----------  ------------------"            << endl;
-
-   for(int i = 0; i < 5000; i++)
-   {
-      quick5000 << setw(10) << temp5000[i].key;
-      quick5000 << setw(20) << temp5000[i].num << endl;
-   }
-
-   quick5000.close();
-
-/*****************************************************************************/
-// Print Quicksort of 10000
-/*****************************************************************************/
-
-   count = 0;
-   
-   // make copy of array
-   for(int i = 0; i < 10000; i++)
-      temp10000[i] = num10000[i];
-
-   // call quickSort function
-   quickSort(temp10000, 0, 9999, count);
-
-   //print quickSort data to file
-   ofstream quick10000;
-   quick10000.open("quick10000.dat");
-   quick10000 << "Calculated Big-O (nlog(n)): 40,000"        << endl;
-   quick10000 << "From project Big-O: "             << count << endl;
-   quick10000 << "List of sorted keys and numbers:" << endl  << endl;
-   quick10000 << setw(10) << "Key" << setw(20) << "Data"     << endl;
-   quick10000 << "----------  ------------------"            << endl;
-  
-  for(int i = 0; i < 10000; i++)
-  {
-    quick10000 << setw(10) << temp10000[i].key;
-    quick10000 << setw(20) << temp10000[i].num << endl;
-  }
-  
-   quick10000.close();
-  
-  
-   cout << endl << "Files generated" << endl << endl;
+	cout << endl << "Files generated" << endl << endl;
         
 /*****************************************************************************/
 // Print BST of 100

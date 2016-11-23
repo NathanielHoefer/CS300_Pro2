@@ -57,60 +57,7 @@ void bubbleSort(data arr[], int size)
 		}
 	}	
 
-
-   // copy to file, if size = 100
-	if(size == 100)
-	{
-		bub.open("bub100.dat");
-		bub << "Calculated Big-O (n^2): 10,000"             << endl;
-		bub << "From project Big-O: "              << count << endl;
-		bub << "List of sorted keys and numbers:"  <<  endl << endl;
-		bub << setw(10) << "Key" << setw(20) << "Data"      << endl;
-		bub << "----------  ------------------"             << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			bub << setw(10) << copy[i].key;
-			bub << setw(20) << copy[i].num << endl;
-		}
-	}
-
-
-   // copy to file, if size = 5000
-	if(size == 5000)
-	{
-		bub.open("bub5000.dat");
-		bub << "Calculated Big-O (n^2): 25,000,000"         << endl;
-		bub << "From project Big-O: "              << count << endl;
-		bub << "List of sorted keys and numbers:"  <<  endl << endl;
-		bub << setw(10) << "Key" << setw(20) << "Data"      << endl;
-		bub << "----------  ------------------"             << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			bub << setw(10) << copy[i].key;
-			bub << setw(20) << copy[i].num << endl;
-		}
-	}
-
-   // copy to file, if size = 10000
-	if(size == 10000)
-	{
-		bub.open("bub10000.dat");
-		bub << "Calculated Big-O (n^2): 100,000,000"       << endl;
-		bub << "From project Big-O: "             << count << endl;
-		bub << "List of sorted keys and numbers:" << endl  << endl;
-		bub << setw(10) << "Key" << setw(20) << "Data"     << endl;
-		bub << "----------  ------------------"            << endl;
-		
-		for(int i = 0; i < size; i++)
-		{
-			bub << setw(10) << copy[i].key;
-			bub << setw(20) << copy[i].num << endl;
-		}
-	}
-
-   return;
+	outputData(copy, size, count, 'b');
 
 }
 
