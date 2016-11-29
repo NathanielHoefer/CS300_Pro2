@@ -47,85 +47,87 @@ Functions:
 using namespace std;
 
 
-static const int COUNT1 = 100;
-static const int COUNT2 = 5000;
-static const int COUNT3 = 10000;
+const int COUNT1 = 100;
+const int COUNT2 = 5000;
+const int COUNT3 = 10000;
 
 
 int main()
 {
 	
-	Data num100[100], num5000[5000], num10000[10000];
-	Data temp100[100], temp5000[5000], temp10000[10000];
+	Data list1[COUNT1], list2[COUNT2], list3[COUNT3];
+	Data temp1[COUNT1], temp2[COUNT2], temp3[COUNT3];
 	BST bst1, bst2, bst3;
 	int quickCount;
 
 	// Generates the three lists based on the size
-	generateList(num100, 100);
-	generateList(num5000, 5000);
-	generateList(num10000, 10000);
+	generateList(list1, COUNT1);
+	generateList(list2, COUNT2);
+	generateList(list3, COUNT3);
    
 
 	// Copies the arrays
-	for(int i = 0; i < 100; i++)
-		temp100[i] = num100[i];
-	for(int i = 0; i < 5000; i++)
-		temp5000[i] = num5000[i];
-	for(int i = 0; i < 10000; i++)
-		temp10000[i] = num10000[i];
+	for(int i = 0; i < COUNT1; i++)
+		temp1[i] = list1[i];
+	for(int i = 0; i < COUNT2; i++)
+		temp2[i] = list2[i];
+	for(int i = 0; i < COUNT3; i++)
+		temp3[i] = list3[i];
+
 
 	// Sorts the elements within 100 element lists
-	cout << endl << 100 << " Element Lists" << endl;
+	cout << endl << COUNT1 << " Element Lists" << endl;
 	cout << "------------------------------------" << endl;
 
-	bubbleSort(num100, 100);
-	insertionSort(num100, 100);
-	selectionSort(num100, 100);
+	bubbleSort(list1, COUNT1);
+	insertionSort(list1, COUNT1);
+	selectionSort(list1, COUNT1);
 
 	quickCount = 0;
-	quickSort(temp100, 0, 99, quickCount);
-	outputData(temp100, 100, quickCount, 'q');
+	quickSort(temp1, 0, (COUNT1 - 1), quickCount);
+	outputData(temp1, COUNT1, quickCount, 'q');
 
-	for(int i = 0; i < 100; i++)
-	  bst1.insertNode(num100[i].key, num100[i].num);
+	for(int i = 0; i < COUNT1; i++)
+		bst1.insertNode(list1[i].key, list1[i].num);
 
-	printBST(bst1, 100);
+	printBST(bst1, COUNT1);
 
 
 	// Sorts the elements within 5000 element lists
-	cout << endl << 5000 << " Element Lists" << endl;
+	cout << endl << COUNT2 << " Element Lists" << endl;
 	cout << "------------------------------------" << endl;
 
-	bubbleSort(num5000, 5000);
-	insertionSort(num5000, 5000);
-	selectionSort(num5000, 5000);
+	bubbleSort(list2, COUNT2);
+	insertionSort(list2, COUNT2);
+	selectionSort(list2, COUNT2);
 
 	quickCount = 0;
-	quickSort(temp5000, 0, 4999, quickCount);
-	outputData(temp5000, 5000, quickCount, 'q');
+	quickSort(temp2, 0, (COUNT2 - 1), quickCount);
+	outputData(temp2, COUNT2, quickCount, 'q');
 
-	for(int i = 0; i < 5000; i++)
-	  bst2.insertNode(num5000[i].key, num5000[i].num);
+	for(int i = 0; i < COUNT2; i++)
+	  bst2.insertNode(list2[i].key, list2[i].num);
 
-	printBST(bst2, 5000);
+	printBST(bst2, COUNT2);
 
 
 	// Sorts the elements within 10000 element lists
-	cout << endl << 10000 << " Element Lists" << endl;
+	cout << endl << COUNT3 << " Element Lists" << endl;
 	cout << "------------------------------------" << endl;
 
-	bubbleSort(num10000, 10000);
-	insertionSort(num10000, 10000);
-	selectionSort(num10000, 10000);
+	bubbleSort(list3, COUNT3);
+	insertionSort(list3, COUNT3);
+	selectionSort(list3, COUNT3);
 
 	quickCount = 0;
-	quickSort(temp10000, 0, 9999, quickCount);
-	outputData(temp10000, 10000, quickCount, 'q');
+	quickSort(temp3, 0, (COUNT3 - 1), quickCount);
+	outputData(temp3, COUNT3, quickCount, 'q');
 
-	for(int i = 0; i < 10000; i++)
-		bst3.insertNode(num10000[i].key, num10000[i].num);
+	for(int i = 0; i < COUNT3; i++)
+		bst3.insertNode(list3[i].key, list3[i].num);
 
-	printBST(bst3, 10000);
+	printBST(bst3, COUNT3);
+
 
 	cout << endl << "Files generated" << endl << endl;
    
