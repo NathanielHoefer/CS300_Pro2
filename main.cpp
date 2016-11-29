@@ -2,7 +2,7 @@
 /* Project 2 - Sorting Algorithms											 */
 /*****************************************************************************
 	Author:  Atish Retna Rajah
-    Student ID:
+    Student ID: R643D785
 
     Author: Nathaniel Hoefer
     Student ID: X529U639
@@ -46,10 +46,10 @@ Functions:
 
 using namespace std;
 
-
-const int COUNT1 = 100;
-const int COUNT2 = 5000;
-const int COUNT3 = 10000;
+// Static constants to specify list sizes
+static const int COUNT1 = 100;
+static const int COUNT2 = 5000;
+static const int COUNT3 = 10000;
 
 
 int main()

@@ -2,7 +2,7 @@
 /* Project 2 - Sorting Algorithms											 */
 /*****************************************************************************
 	Author:  Atish Retna Rajah
-    Student ID:
+    Student ID: R643D785
 
     Author: Nathaniel Hoefer
     Student ID: X529U639
@@ -57,57 +57,6 @@ void selectionSort(Data arr[], int size)
 	}
 
 	outputData(copy, size, count, 's');
-
-//   // prints out data if size = 100
-//	if(size == 100)
-//	{
-//      sels.open("sels100.dat");
-//		sels << "Calculated Big-O (n^2): 10,000"            << endl;
-//		sels << "From project Big-O: "             << count << endl;
-//		sels << "List of sorted keys and numbers:" << endl  << endl;
-//		sels << setw(10) << "Key" << setw(20) << "Data"     << endl;
-//		sels << "----------  ------------------"            << endl;
-//
-//		for(int i = 0; i < size; i++)
-//		{
-//			sels << setw(10) << copy[i].key;
-//			sels << setw(20) << copy[i].num << endl;
-//		}
-//	}
-//
-//   // prints out data if size = 5000
-//	if(size == 5000)
-//	{
-//		sels.open("sels5000.dat");
-//		sels << "Calculated Big-O (n^2): 25,000,000"        << endl;
-//		sels << "From project Big-O: "             << count << endl;
-//		sels << "List of sorted keys and numbers:" << endl  << endl;
-//		sels << setw(10) << "Key" << setw(20) << "Data"     << endl;
-//		sels << "----------  ------------------"            << endl;
-//
-//		for(int i = 0; i < size; i++)
-//		{
-//			sels << setw(10) << copy[i].key;
-//			sels << setw(20) << copy[i].num << endl;
-//		}
-//	}
-//
-//   // prints out data if size = 10000
-//	if(size == 10000)
-//	{
-//		sels.open("sels10000.dat");
-//		sels << "Calculated Big-O (n^2): 100,000,000"       << endl;
-//		sels << "From project Big-O: "             << count << endl;
-//		sels << "List of sorted keys and numbers:" << endl  << endl;
-//		sels << setw(10) << "Key" << setw(20) << "Data"     << endl;
-//		sels << "----------  ------------------"            << endl;
-//
-//		for(int i = 0; i < size; i++)
-//		{
-//			sels << setw(10) << copy[i].key;
-//			sels << setw(20) << copy[i].num << endl;
-//		}
-//	}
 }
 
 

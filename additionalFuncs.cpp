@@ -2,13 +2,49 @@
 /* Project 2 - Sorting Algorithms											 */
 /*****************************************************************************
 	Author:  Atish Retna Rajah
-    Student ID:
+    Student ID: R643D785
 
     Author: Nathaniel Hoefer
     Student ID: X529U639
     Program: Project 2
-******************************************************************************/
 
+
+Functions:
++ swapData(Data &x, Data &y): Swaps data utilizing a temporary object
+	Preconditions: None
+	Postconditions: None
+	> set temp = x
+	> swap x and y
+	> set y = temp
+
++ generateList(Data arr[], int size): Generates an array of random integers
+	between 0-100000 for a key and a random double as data
+	Preconditions: Size is not larger than the length of the array
+	Postconditions: Array is filled with randomly generated numbers
+	> Set seed for random generator
+	> Generate a number of keys equal to the submitted size
+	> Generate a number of doubles equal to the submitted size
+
++ outputData(Data arr[], int size, int passes, char sort): 	Outputs the
+	sorting data into both a file and to the console
+	Preconditions: Size is the length of the array passed in.
+		Sort Char: s = selection sort, i = insertion sort, b = bubble sort,
+				q = quick sort
+	Postconditions: Data printed to a file with header and sorting info
+		printed to console
+	> Create a file name to be used for saving the output
+	> Use a switch statement for each sort
+	> Output the formatted information to the file
+	> Output the Big-O info to console.
+
++ printBST(BST tree, int size): Print the binary search tree in order
+	Preconditions: tree is not empty
+	Postconditions: File is created with bst data listed in order
+	> Create the file name to be used for saving the output
+	> Output the formatted information to the file
+
+
+******************************************************************************/
 
 #include <iostream>
 #include <fstream>
@@ -22,39 +58,36 @@
 
 using namespace std;
 
-#ifndef __PRINT__
-#define __PRINT__
+#ifndef FUNCS_CPP_
+#define FUNCS_CPP_
 
-// prints Key, only used for testing purposes
-void printKey(Data arr[], int size)
+
+// FUNCTIONS ******************************************************************
+
+
+//	Swaps data utilizing a temporary object
+//		Preconditions: None
+//		Postconditions: None
+void swapData(Data &x, Data &y)
 {
-   // print each element of array
-	for (int i = 0; i < size; i++)
-		cout << setw(5) << arr[i].key << " ";
-
-	cout << endl << endl;
-}
-
-
-
-// swapData
-void swapData(Data & x, Data & y)
-{
-   // create temporary 
 	Data temp;
 	
-   // set temp equal to x
 	temp = x;
-   // set x equal to y
+
 	x = y;
-   // set y equal to temp
+
 	y = temp;
 }
 
 
+/*****************************************************************************/
 
 
-void generateList(Data arr[], int size)
+//	Generates an array of random integers between 0-100000 for a key and a
+//		random double as data
+//		Preconditions: Size is not larger than the length of the array
+//		Postconditions: Array is filled with randomly generated numbers
+void generateList(Data list[], int size)
 {
    int x, i;
    double y;
@@ -63,21 +96,25 @@ void generateList(Data arr[], int size)
 	// generate list of random numbers for the array of size 100
 	for(i = 0; i < size; i++)
 	{
-		arr[i].key = rand () % 100000;
+		list[i].key = rand () % 100000;
 		x = rand () % 10000;
 		y = rand () % 10000;
-		arr[i].num = x / y;
+		list[i].num = x / y;
 	}
 }
 
 
+/*****************************************************************************/
 
 
-void outputData(Data arr[], int size, int count, char sort)
+//	Outputs the sorting data into both a file and to the console
+//		Preconditions: Size is the length of the array passed in.
+//			Sort Char: s = selection sort, i = insertion sort, b = bubble sort,
+//					q = quick sort
+//		Postconditions: Data printed to a file with header and sorting info
+//			printed to console
+void outputData(Data arr[], int size, int passes, char sort)
 {
-
-	// selection, quick, insertion, b
-
 	string file = "";
 	string bigO = "Calculated Big-O ";
 	string title = "";
@@ -114,7 +151,7 @@ void outputData(Data arr[], int size, int count, char sort)
 		break;
 	}
 
-	// Convert int to string and concatenate
+	// Convert int to string and concatenate for full file name
 	fileNum << size;
 	file += fileNum.str();
 	file += ".dat";
@@ -129,10 +166,11 @@ void outputData(Data arr[], int size, int count, char sort)
 	output << title << fileNum.str() << " Elements" 	<< endl;
 	output << "-------------------------------" 		<< endl;
 	output << bigO << endl;
-	output << "Actual Big-O: "   << count << endl << endl;
+	output << "Actual Big-O: "   << passes << endl << endl;
 	output << setw(10) << "Key" << setw(20) << "Data" 	<< endl;
 	output << "----------  ------------------"          << endl;
 
+	// Displays each element
 	for(int i = 0; i < size; i++)
 	{
 		output << setw(10) << arr[i].key << " ";
@@ -141,21 +179,30 @@ void outputData(Data arr[], int size, int count, char sort)
 
 	output.close();
 
-	cout << title << count << " passes" << endl;
+	// Outputs results to the console
+	cout << title << "Actual Big-O: " << passes << endl;
 }
 
 
+/*****************************************************************************/
+
+
+//	Print the binary search tree in order
+//		Preconditions: tree is not empty
+//		Postconditions: File is created with bst data listed in order
 void printBST(BST tree, int size)
 {
+	// Generate file name
 	string file = "bst";
 	stringstream fileNum;
 	fileNum << size;
 	file += fileNum.str();
 	file += ".dat";
 
-	// print data to file
+	// Begin file stream
 	ofstream bst;
 
+	// Create header for file
 	bst.open(file.c_str());
 	bst << "-------------------------------" 		  << endl;
 	bst << "Binary Search Tree " << fileNum.str();
@@ -164,13 +211,11 @@ void printBST(BST tree, int size)
 	bst << setw(10) << "Key" << setw(20) << "Data"    << endl;
 	bst << "----------  ------------------"           << endl;
 
-	bst.setf(ios::fixed);
-	bst.setf(ios::showpoint);
-
-	// print inoder
+	// Print tree in order
 	tree.print(bst);
+
 	bst.close();
 }
 
 
-#endif
+#endif /* FUNCS_CPP_ */

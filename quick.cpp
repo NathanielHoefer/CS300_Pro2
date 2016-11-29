@@ -2,11 +2,30 @@
 /* Project 2 - Sorting Algorithms											 */
 /*****************************************************************************
 	Author:  Atish Retna Rajah
-    Student ID:
+    Student ID: R643D785
 
     Author: Nathaniel Hoefer
     Student ID: X529U639
     Program: Project 2
+
+Functions:
+	+ quickSort(Data list[], int left, int right, int &count): Sorts the list
+		using the quick sort method through recursion
+		Preconditions: left key is the first index and right key is the last
+			index of the list.
+		Postconditions: The submitted list will be in order
+		> Check to see if left and right are the same
+		> If not, find median
+			> Loop while sortLeft is <= sortRight
+				> Increment sortLeft while key < pivot key
+				> Decrement sortRight while key >= pivot key
+				> Exchange sortLeft and sortRight if sortLeft is <= sortRight
+					then increment sortLeft and decrement sortRight
+			> Update pivots and left element
+			> Quicksort(left , sortRight -1) if left < sortRight
+			> Quicksort(sortLeft, right) if sortLeft < right)
+
+
 ******************************************************************************/
 
 
@@ -14,85 +33,76 @@
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
-
 #include "additionalFuncs.cpp"
 #include "data.cpp"
 
 using namespace std;
 
-#ifndef __QUICK__
-#define __QUICK__
+#ifndef QUICK_CPP_
+#define QUICK_CPP_
 
-// Quick sort
-void quickSort(Data arr[], int left, int right, int & count)
+//	Sorts the list using the quick sort method through recursion
+//		Preconditions: left key is the first index and right key is the last
+//			index of the list.
+//		Postconditions: The submitted list will be in order
+void quickSort(Data list[], int left, int right, int &count)
 {
-   // if right minus left is greater than zero
-   if((right - left) > 0)
+	// Determines that left and right are not the same
+	if((right - left) > 0)
 	{
-      // set sortleft = left + 1
-      int sortleft  = left + 1;
-      // set sortright = right
-		int sortright = right;
-      // set middle equal to the average of left and right
-		int middle    = (left + right) / 2;			
 
-      // if the key of arr[left] is greater, swap
-		if(arr[left].key   > arr[middle].key)
-			swapData(arr[left],  arr[middle]);
+		int sortLeft = left + 1;
+		int sortRight = right;
+		int middle = (left + right) / 2;
 
-      // if the key of arr[left] is greater, swap
-		if(arr[left].key   > arr[right].key)
-			swapData(arr[left],   arr[right]);
+		// When the key of list[left] is greater than middle, swap
+		if(list[left].key > list[middle].key)
+		swapData(list[left],  list[middle]);
 
-      // if the key of arr[middle] is greater, swap
-		if(arr[middle].key > arr[right].key)
-			swapData(arr[middle], arr[right]);
+		// When the key of list[left] is greater than right, swap
+		if(list[left].key > list[right].key)
+		swapData(list[left], list[right]);
 
-      // swap data
-		swapData(arr[middle], arr[left]);
+		// When the key of list[middle] is greater than right, swap
+		if(list[middle].key > list[right].key)
+		swapData(list[middle], list[right]);
 
-      // set pivot equal to the value of the left
+		// Swap the data of middle and left
+		swapData(list[middle], list[left]);
+
+
 		int pivot = left;
 
-      // while sortleft is less than or equal to the sortright
-		while (sortleft <= sortright)
+		// While sortLeft is less than or equal to the sortRight
+		while (sortLeft <= sortRight)
 		{
-         // while arr[sortleft] < arr[pivot], increment left
-			while(arr[sortleft].key  < arr[pivot].key)
-            sortleft++;
+			while(list[sortLeft].key < list[pivot].key)
+				sortLeft++;
+
+			while(list[sortRight].key >= list[pivot].key)
+				sortRight--;
 		
-         // while arr[sortright] >= arr[pivot], decrement right
-			while(arr[sortright].key >= arr[pivot].key)
-				sortright--;
+		 // Increment the count
+		 count++;
 
-         // increment count
-         count++;
-
-         // if sortleft is less than sortright
-			if(sortleft < sortright)
+         // While sortLeft is less than sortRight
+			if(sortLeft < sortRight)
 			{
-            //swap data
-				swapData(arr[sortleft], arr[sortright]);
-            //increment sort left
-				sortleft++;
-            //decrement sort right
-				sortright--;
+				swapData(list[sortLeft], list[sortRight]);
+				sortLeft++;
+				sortRight--;
 			}
 		}
 
-      // swapData
-		swapData(arr[sortleft - 1], arr[pivot]);
+		swapData(list[sortLeft - 1], list[pivot]);
 
-      // call quicksort function recursively
-      // if left is less than sortright
-		if(left < sortright)
-			quickSort(arr, left, sortright - 1, count);
+		// Recursively call quickSort for left < sortRight
+		if(left < sortRight)
+			quickSort(list, left, sortRight - 1, count);
 
-      // if sortleft is less than sortright
-		if(sortleft < right)
-			quickSort(arr, sortleft, right, count);
-  }
-  
-  return;
+		// Recursively call quickSort for sortleft < right
+		if(sortLeft < right)
+			quickSort(list, sortLeft, right, count);
+	}
 }
-#endif
+#endif /* QUICK_CPP_ */

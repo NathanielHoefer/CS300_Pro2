@@ -2,7 +2,7 @@
 /* Project 2 - Sorting Algorithms											 */
 /*****************************************************************************
 	Author:  Atish Retna Rajah
-    Student ID:
+    Student ID: R643D785
 
     Author: Nathaniel Hoefer
     Student ID: X529U639
@@ -47,7 +47,7 @@ BST::BST()
 }
 
 
-// METHODS ********************************************************************
+// FUNCTIONS ******************************************************************
 
 
 //	Inserts a node with the data into the correct location within the BST
