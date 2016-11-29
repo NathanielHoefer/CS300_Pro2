@@ -18,6 +18,7 @@
 #include <sstream>
 #include <ctime>
 #include "data.cpp"
+#include "bst.hpp"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ using namespace std;
 #define __PRINT__
 
 // prints Key, only used for testing purposes
-void printKey(data arr[], int size)
+void printKey(Data arr[], int size)
 {
    // print each element of array
 	for (int i = 0; i < size; i++)
@@ -37,10 +38,10 @@ void printKey(data arr[], int size)
 
 
 // swapData
-void swapData(data & x, data & y)
+void swapData(Data & x, Data & y)
 {
    // create temporary 
-	data temp;
+	Data temp;
 	
    // set temp equal to x
 	temp = x;
@@ -53,7 +54,7 @@ void swapData(data & x, data & y)
 
 
 
-void generateList(data arr[], int size)
+void generateList(Data arr[], int size)
 {
    int x, i;
    double y;
@@ -72,7 +73,7 @@ void generateList(data arr[], int size)
 
 
 
-void outputData(data arr[], int size, int count, char sort)
+void outputData(Data arr[], int size, int count, char sort)
 {
 
 	// selection, quick, insertion, b
@@ -143,6 +144,33 @@ void outputData(data arr[], int size, int count, char sort)
 	cout << title << count << " passes" << endl;
 }
 
+
+void printBST(BST tree, int size)
+{
+	string file = "bst";
+	stringstream fileNum;
+	fileNum << size;
+	file += fileNum.str();
+	file += ".dat";
+
+	// print data to file
+	ofstream bst;
+
+	bst.open(file.c_str());
+	bst << "-------------------------------" 		  << endl;
+	bst << "Binary Search Tree " << fileNum.str();
+	bst << " Elements" << endl;
+	bst << "-------------------------------" <<  endl << endl;
+	bst << setw(10) << "Key" << setw(20) << "Data"    << endl;
+	bst << "----------  ------------------"           << endl;
+
+	bst.setf(ios::fixed);
+	bst.setf(ios::showpoint);
+
+	// print inoder
+	tree.print(bst);
+	bst.close();
+}
 
 
 #endif

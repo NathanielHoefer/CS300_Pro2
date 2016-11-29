@@ -22,7 +22,7 @@ using namespace std;
 #define __BUBBLE__
 
 // Bubble Sort
-void bubbleSort(data arr[], int size)
+void bubbleSort(Data arr[], int size)
 {
 	ofstream bub;
 
@@ -31,7 +31,7 @@ void bubbleSort(data arr[], int size)
    bub.setf(ios::showpoint);
    bub.precision(2);
 
-	data copy[size];
+	Data copy[size];
    
    // make a copy of the array
 	for(int i = 0; i < size; i ++)

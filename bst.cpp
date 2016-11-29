@@ -12,155 +12,148 @@
 #include <iostream> 
 #include <string>
 #include <fstream>
-#include "bst.hpp"
 #include <iomanip>
+#include "bst.hpp"
+
 using namespace std;
 
-/******************************************************************************/
-// Constructor 
-Node::Node(int k, double n)
+
+/*****************************************************************************/
+// Class Source Functions
+/*****************************************************************************/
+
+
+// CONSTRUCTORS ***************************************************************
+
+
+Node::Node(int key, double num)
 {
-   // set t.key equal to k
-   t.key   = k; 
-   // set t.num equal to n
-   t.num   = n;
-   // set left pointer = null
-   left  = NULL;
-   // set right pointer = null
-   right = NULL;
+   mData.key = key;
+
+   mData.num = num;
+
+   mLeft = NULL;
+
+   mRight = NULL;
 }
 
-// set_left
-void Node::set_left(Node *tleft)
-{
-   //set left pointer equal to tleft
-   left = tleft;
-}
-
-// set_right
-void Node::set_right(Node *tright)
-{
-   //set right pointer equal to tright
-   right = tright;
-}
-
-// setKey
-void Node::setKey(int k)
-{
-   // set t.key = k
-   t.key = k;
-}
-
-// getKey
-int Node::getKey()
-{
-   return t.key;
-}
-
-// getNum
-double Node::getNum()
-{
-   return t.num;
-}
-
-// getLeft
-Node *Node::getLeft()
-{
-   return left;
-}
-
-// getRight
-Node *Node::getRight()
-{
-   return right;
-}
 
 /*****************************************************************************/
 
-// Default Constructor
+
 BST::BST()
 {
-   root = NULL;
+   mRoot = NULL;
 }
 
-// Private Insert Function
-void BST::insertNode(int k, double n, Node *leaf)
-{
-   // if k is less than the key of the leaf
-   if (k < leaf->getKey()) 
-   {
-      // if the leaf's left pointer does not equal null, insert node
-      if (leaf->getLeft() != NULL )
-         insertNode(k, n, leaf->getLeft());
 
-      // create new node, set the left pointer of leaf to treenode
+// METHODS ********************************************************************
+
+
+//	Inserts a node with the data into the correct location within the BST
+//		recursively
+//		Preconditions: None
+//		Postconditions: Node with contact info is correctly located in tree
+void BST::insertNode(int key, double num, Node *node)
+{
+   // Key is less than mRoot
+   if (key < node->getKey()) 
+   {
+      // root has a left child
+      if (node->getLeft() != NULL )
+         insertNode(key, num, node->getLeft());
+
+      // root doesn'mData have a mLeft child
       else 
       {
-         Node *treenode = new Node(k, n);
-         leaf->set_left(treenode);
+         Node *temp = new Node(key, num);
+         node->setLeft(temp);
       }
    }
 
    else 
    {
-      // if the leaf's right pointer does not equal null, insert node
-      if (leaf->getRight() != NULL )
-         insertNode(k, n, leaf->getRight());
+      // root has mRight child
+      if (node->getRight() != NULL )
+         insertNode(key, num, node->getRight());
 
-      // create new node, set the right pointer of leaf to treenode
+      // root doesn't have mRight child
       else 
       {
-         Node *treenode = new Node(k, n);
-         leaf->set_right(treenode);
+         Node *temp = new Node(key, num);
+         node->setRight(temp);
       }
    }
 }
 
-// insertNode
-void BST::insertNode(int k, double n)
+
+/*****************************************************************************/
+
+
+//	Inserts a node with the data into the
+//		correct location within the BST
+//		Preconditions: None
+//		Postconditions: Node with contact info is correctly located in tree
+void BST::insertNode(int key, double num)
 {
    // if tree is empty
    if (isEmpty())
    {
-      // create new node, set root equal to treenode
-      Node *treenode = new Node(k, n);
-      root = treenode;
+      // set root equal to newly created node
+      Node *temp = new Node(key, num);
+      mRoot = temp;
    }
   
-   // else, insert node
+   // otherwise insert node in tree
    else 
-      insertNode(k, n, root);
+      insertNode(key, num, mRoot);
 }
 
-//print_inorder
-void BST::print_inorder(ofstream &output)
+
+/*****************************************************************************/
+
+
+//	Calls the inOrder print function
+//		Precoditions: None
+//		Postconditions: Data is printed to an output file
+void BST::print(ofstream &output)
 {   
-   inorder(root, output);
+   inOrder(mRoot, output);
 }
 
-//inorder
-void BST::inorder(Node *p, ofstream &output)
+
+/*****************************************************************************/
+
+
+//	Prints the data in BST in order using recursion.
+//		Preconditions: None
+//		Posconditions: Data is printed to an output file
+void BST::inOrder(Node *node, ofstream &output)
 {
    // if tree is not empty 
-   if (p != NULL)
+   if (node != NULL)
    {
-      // call inorder function recursively
-      inorder(p->getLeft(), output);
+      // Recursively call function on left children
+      inOrder(node->getLeft(), output);
       
-      // print to file
-      output << setw(10) << p->getKey()
-             << setw(20) << p->getNum() << endl;
+      // Print to file the root
+      output << setw(10) << node->getKey()
+             << setw(20) << node->getNum() << endl;
 
-      // call inorder function recursively
-      inorder(p->getRight(), output);
+      // Recursively call function on right children
+      inOrder(node->getRight(), output);
    }
 }
 
-//isEmpty
+
+/*****************************************************************************/
+
+
+//	Checks to see if bst is empty
+//		Preconditions: None
+//		Postconditions: None
 bool BST::isEmpty()
 {
-   // returns 0 if root does not equal null
-   // returns 1 if root equal null
-   return (root == NULL);
+   return (mRoot == NULL);
 }
 

@@ -24,7 +24,7 @@ using namespace std;
 #define __QUICK__
 
 // Quick sort
-void quickSort(data arr[], int left, int right, int & count)
+void quickSort(Data arr[], int left, int right, int & count)
 {
    // if right minus left is greater than zero
    if((right - left) > 0)

@@ -22,14 +22,14 @@ using namespace std;
 #define __SELECTION__
 
 // Selection Sort
-void selectionSort(data arr[], int size)
+void selectionSort(Data arr[], int size)
 {
 	int j, min;
 	int count = 0;
 
 	ofstream sels;
 
-	data copy[size];
+	Data copy[size];
 
    // make copy of array
 	for(int i = 0; i < size; i ++)

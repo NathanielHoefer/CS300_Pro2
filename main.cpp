@@ -44,15 +44,20 @@ Functions:
 #include "quick.cpp"
 #include "bst.hpp"
 
-
 using namespace std;
+
+
+static const int COUNT1 = 100;
+static const int COUNT2 = 5000;
+static const int COUNT3 = 10000;
 
 
 int main()
 {
 	
-	data num100[100], num5000[5000], num10000[10000];
-	data temp100[100], temp5000[5000], temp10000[10000];
+	Data num100[100], num5000[5000], num10000[10000];
+	Data temp100[100], temp5000[5000], temp10000[10000];
+	BST bst1, bst2, bst3;
 	int quickCount;
 
 	// Generates the three lists based on the size
@@ -81,6 +86,11 @@ int main()
 	quickSort(temp100, 0, 99, quickCount);
 	outputData(temp100, 100, quickCount, 'q');
 
+	for(int i = 0; i < 100; i++)
+	  bst1.insertNode(num100[i].key, num100[i].num);
+
+	printBST(bst1, 100);
+
 
 	// Sorts the elements within 5000 element lists
 	cout << endl << 5000 << " Element Lists" << endl;
@@ -93,6 +103,11 @@ int main()
 	quickCount = 0;
 	quickSort(temp5000, 0, 4999, quickCount);
 	outputData(temp5000, 5000, quickCount, 'q');
+
+	for(int i = 0; i < 5000; i++)
+	  bst2.insertNode(num5000[i].key, num5000[i].num);
+
+	printBST(bst2, 5000);
 
 
 	// Sorts the elements within 10000 element lists
@@ -107,84 +122,14 @@ int main()
 	quickSort(temp10000, 0, 9999, quickCount);
 	outputData(temp10000, 10000, quickCount, 'q');
 
+	for(int i = 0; i < 10000; i++)
+		bst3.insertNode(num10000[i].key, num10000[i].num);
+
+	printBST(bst3, 10000);
+
 	cout << endl << "Files generated" << endl << endl;
-        
-/*****************************************************************************/
-// Print BST of 100
-/*****************************************************************************/
-
-   // create three different binary trees
-   // for different the different sizes
-   BST  binaryTree1 = BST();
-   BST  binaryTree2 = BST();
-   BST  binaryTree3 = BST();
    
-   // insert each node
-   for(int i = 0; i < 100; i++)
-      binaryTree1.insertNode(num100[i].key, num100[i].num);
-   
-   // print data to file
-   ofstream bst1("bst100.dat");
-   
-   
-   bst1 << "List of sorted keys and numbers:"  <<  endl << endl;
-   bst1 << setw(10) << "Key" << setw(20) << "Data"      << endl;
-   bst1 << "----------  ------------------"             << endl;
-   
-   bst1.setf(ios::fixed);
-   bst1.setf(ios::showpoint);
-
-   // print inoder
-   binaryTree1.print_inorder(bst1);
-   bst1.close();
-
-/*****************************************************************************/
-// Print BST of 5000
-/*****************************************************************************/
-   
-   // insert each node
-   for(int i = 0; i < 5000; i++)
-      binaryTree2.insertNode(num5000[i].key, num5000[i].num);
-   
-   // print data to file
-   ofstream bst2("bst5000.dat");
-   
-   bst2 << "List of sorted keys and numbers:"  <<  endl << endl;
-   bst2 << setw(10) << "Key" << setw(20) << "Data"      << endl;
-   bst2 << "----------  ------------------"             << endl;
-   
-   
-   bst2.setf(ios::fixed);
-   bst2.setf(ios::showpoint);
-
-   // print inorder
-   binaryTree2.print_inorder(bst2);
-   bst2.close();
-   
-/*****************************************************************************/
-// Print BST of 10000
-/*****************************************************************************/
-   
-   // insert each node
-   for(int i = 0; i < 10000; i++)
-      binaryTree3.insertNode(num10000[i].key, num10000[i].num);
-   
-   ofstream bst3("bst10000.dat");
-   
-   // print data to file
-   bst3 << "List of sorted keys and numbers:"  <<  endl << endl;
-   bst3 << setw(10) << "Key" << setw(20) << "Data"      << endl;
-   bst3 << "----------  ------------------"             << endl;
-   
-   
-   bst3.setf(ios::fixed);
-   bst3.setf(ios::showpoint);
-
-   // print inorder
-   binaryTree3.print_inorder(bst3);
-   bst3.close();
-   
-   return 0;
+	return 0;
 }
 
 

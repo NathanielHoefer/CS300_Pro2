@@ -20,7 +20,7 @@ using namespace std;
 #define __DATA__
 
 // structure
-struct data
+struct Data
 {
 	int key;
 	double num;

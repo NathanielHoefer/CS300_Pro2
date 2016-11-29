@@ -22,7 +22,7 @@ using namespace std;
 #define __INSERTION__
 
 // Insertion Sort
-void insertionSort(data arr[], int size)
+void insertionSort(Data arr[], int size)
 {
 
 	int walker;
@@ -30,7 +30,7 @@ void insertionSort(data arr[], int size)
 
 	ofstream sins;
 
-	data copy[size];
+	Data copy[size];
 
    // make copy of array
 	for(int i = 0; i < size; i ++)
