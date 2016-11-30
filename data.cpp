@@ -7,17 +7,28 @@
     Author: Nathaniel Hoefer
     Student ID: X529U639
     Program: Project 2
+
+
+Structure Name: Data
+	Contains the data of a key and a double number
+
+Data:
+	- int mKey: Used for a key to be used in sorting
+	- double mNum: A random number to act as additional data
+
+
 ******************************************************************************/
 
-using namespace std;
+
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
 
+using namespace std;
 
-#ifndef __DATA__
-#define __DATA__
+#ifndef DATA_CPP_
+#define DATA_CPP_
 
 // structure
 struct Data
@@ -26,4 +37,4 @@ struct Data
 	double num;
 };
 
-#endif
+#endif /* DATA_CPP_ */

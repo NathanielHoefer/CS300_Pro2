@@ -7,9 +7,26 @@
     Author: Nathaniel Hoefer
     Student ID: X529U639
     Program: Project 2
+
+
+Functions:
+	+ bubbleSort(Data list[], int size): Sorts the list by using the bubble sort
+		method while keeping track of the number of iterations
+		Preconditions: The size is not larger than the list
+		Postconditions: The list is sorted in ascending order
+		> Copy the array to a temp array.
+		> In order to optimize, use a sorted value to tell if the list has been
+			sorted before comparing entire list
+		> Starting with the last two elements, compare each pair of elements.
+			> If right element is less than left element, swap them
+			> The least element will bubble to the beginning of the list
+			> Keep track of number of iterations with a counter
+		> Output results
+
+
 ******************************************************************************/
 
-using namespace std;
+
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
@@ -17,48 +34,47 @@ using namespace std;
 #include "data.cpp"
 #include "additionalFuncs.cpp"
 
+using namespace std;
 
-#ifndef __BUBBLE__
-#define __BUBBLE__
+#ifndef BUBBLE_CPP_
+#define BUBBLE_CPP_
 
 // Bubble Sort
-void bubbleSort(Data arr[], int size)
+void bubbleSort(Data list[], int size)
 {
-	ofstream bub;
 
-   // sets precision
-   bub.setf(ios::fixed);
-   bub.setf(ios::showpoint);
-   bub.precision(2);
-
-	Data copy[size];
+	Data temp[size];
    
-   // make a copy of the array
+	// make a temp of the array
 	for(int i = 0; i < size; i ++)
-		copy[i] = arr[i];	
+		temp[i] = list[i];
 
-	int curr, walker;
-	int count = 0;
+	int walker, count;
+	count = 0;
+
+	// Used for optimized sorting
 	bool sorted = false;
 	
-	for(curr = 0; curr < size && sorted == false; curr++)
+	// Sort temp list
+	for(int i = 0; (i < size) && (sorted == false); i++)
 	{
 		sorted = true;
-		for(walker = size - 1; walker > curr; walker--)
+
+		// Compares each two elements starting from the top and swaps them if
+		// the right element is less than the right
+		for(walker = size - 1; walker > i; walker--)
 		{
-         // increment count, used for bigO
-         count++;
-      
-			if(copy[walker].key < copy[walker - 1].key)
+			if(temp[walker].key < temp[walker - 1].key)
 			{
-				swapData(copy[walker], copy[walker - 1]);
+				swapData(temp[walker], temp[walker - 1]);
 				sorted = false;
 			}
+
+	         count++;
 		}
 	}	
 
-	outputData(copy, size, count, 'b');
-
+	outputData(temp, size, count, 'b');
 }
 
-#endif
+#endif /* BUBBLE_CPP_ */
